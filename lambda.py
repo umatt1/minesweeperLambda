@@ -1,4 +1,5 @@
 import requests
+import json
 
 def lambda_handler(event, context):
     try:
@@ -6,7 +7,7 @@ def lambda_handler(event, context):
         api_url = 'https://api.example.com/endpoint'
 
         # Make an HTTP GET request to the API
-        response = requests.get(api_url)
+        response = requests.post(api_url)
 
         # Log the API response
         print('API Response:', response.json())
