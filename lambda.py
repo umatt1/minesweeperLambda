@@ -1,10 +1,28 @@
 import requests
 import json
+import random
+import time
+
+def puzzle_maker(length, width, mines):
+    random.seed(time.time())
+
+    puzzle = [[0 for _ in range(width)] for _ in range(length)]
+
+    # Place mines randomly
+    for _ in range(mines):
+        row = random.randint(0, length - 1)
+        col = random.randint(0, width - 1)
+        puzzle[row][col] = 1
+
+    return puzzle
 
 def lambda_handler(event, context):
     try:
         # Define the API endpoint URL
         api_url = 'https://api.example.com/endpoint'
+
+        # Create a puzzle
+        puzzle = puzzle_maker(5,5,5)
 
         # Make an HTTP GET request to the API
         response = requests.post(api_url)
